@@ -1,0 +1,19 @@
+name: Main
+version: 1.0
+main: com.travis.test.Main
+
+commands:
+  assign:
+    description: assigns player to a team
+  tpr:
+     description: Move Player To Home
+  kit:
+     description: To get a kit
+  removePlayer:
+     description: Remove Player Form Team
+  startGame:
+     description: Start Game
+  startTime:
+     description: Start Time
+  stopTime:
+     description: Stop Time
