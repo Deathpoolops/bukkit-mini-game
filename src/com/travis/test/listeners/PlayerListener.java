@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
 
 /**
- * Created by travisws on 11/7/15.
+ * Created by Deathpoolops on 11/7/15.
  */
 public class PlayerListener implements Listener {
 

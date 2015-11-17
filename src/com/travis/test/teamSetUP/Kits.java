@@ -12,7 +12,7 @@ import org.bukkit.potion.PotionType;
 import java.util.ArrayList;
 
 /**
- * Created by travisws on 11/7/15.
+ * Created by Deathpoolops on 11/7/15.
  */
 public class Kits {
 

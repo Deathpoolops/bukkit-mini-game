@@ -6,10 +6,11 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 /**
- * Created by travisws on 11/8/15.
+ * Created by Deathpoolops on 11/8/15.
  */
 public class GameState {
-    public static void StartGame(Player player) {
+    public void StartGame(Player player) {
+        InGame(true);
         SpawnBlue(player);
         SpawnRed(player);
     }
@@ -39,6 +40,10 @@ public class GameState {
             z++;
         }
 
+    }
+
+    public boolean InGame(boolean InGame){
+        return InGame;
     }
 
 }

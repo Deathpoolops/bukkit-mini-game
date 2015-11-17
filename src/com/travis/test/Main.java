@@ -18,7 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 /**
- * Created by travisws on 11/6/15.
+ * Created by Deathpoolops on 11/6/15.
  */
 public class Main extends JavaPlugin {
 
@@ -66,13 +66,14 @@ public class Main extends JavaPlugin {
 
         if (label.equalsIgnoreCase("assign")) {
             Commands.assign();
-            startCountdown();
+            //startCountdown();
         }
 
         if (command.getName().equalsIgnoreCase("startGame")) {
+            GameState gameState = new GameState();
             Player player = (Player) sender;
             stopCountdown();
-            GameState.StartGame(player);
+            gameState.StartGame(player);
         }
 
         if (command.getName().equalsIgnoreCase("removePlayer")) {

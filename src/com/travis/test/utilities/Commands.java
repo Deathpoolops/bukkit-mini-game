@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
 /**
- * Created by travisws on 11/8/15.
+ * Created by Deathpoolops on 11/8/15.
  */
 public class Commands {
 

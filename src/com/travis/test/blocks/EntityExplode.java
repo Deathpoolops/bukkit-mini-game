@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 /**
- * Created by travisws on 11/7/15.
+ * Created by Deathpoolops on 11/7/15.
  */
 public class EntityExplode implements Listener {
 
