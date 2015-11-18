@@ -14,7 +14,7 @@ public class GameState {
         SpawnBlue(player);
         SpawnRed(player);
     }
-
+    //TODO see where spawn point are to fix Z OR X for Red and blue
     public static void SpawnRed(Player player){
         double a = 100.5, b = 100.5, c = 100.5;
 

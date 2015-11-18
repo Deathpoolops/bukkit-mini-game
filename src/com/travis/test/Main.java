@@ -43,6 +43,7 @@ public class Main extends JavaPlugin {
 
     @SuppressWarnings("deprecation")
     public void startCountdown() {
+        //TODO Need to change from bukkit runable to java runable.
         BukkitRunnable bukkitRunnable = new StartTime(this);
         StartTime.startTime = 20;
         startTimeID = getServer().getScheduler().scheduleSyncRepeatingTask(this, bukkitRunnable, 10, 10);
@@ -63,8 +64,9 @@ public class Main extends JavaPlugin {
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        //TODO Need to remove 95%  of all the command on this method
         if (label.equalsIgnoreCase("assign")) {
+            Player player = (Player) sender;
             Commands.assign();
             //startCountdown();
         }
@@ -87,6 +89,10 @@ public class Main extends JavaPlugin {
             Player player = (Player) sender;
             Commands.tpr(player);
         }
+
+        if (command.getName().equalsIgnoreCase("Name")) {
+        }
+
 
         if (command.getName().equalsIgnoreCase("startTime")) {
             startCountdown();

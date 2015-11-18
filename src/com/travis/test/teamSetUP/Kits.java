@@ -104,7 +104,7 @@ public class Kits {
 
         return true;
     }
-
+    //TODO Need to potions
     public static boolean setChemist(String value, Player player) {
        /* if(hasAkit.contains(p.getName())){
             p.sendMessage(ChatColor.GOLD + "do not do it agean");

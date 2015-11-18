@@ -40,11 +40,13 @@ public class PlayerListener implements Listener {
         for (PotionEffect effect : player.getActivePotionEffects()) {
             player.removePotionEffect(effect.getType());
         }
+        //TODO Need to change to a banner on the screen
         player.sendMessage(ChatColor.GREEN + "Hello " + player.getName());
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDeath(PlayerDeathEvent e) {
+        //TODO Need to add spawn point on death
         Player player = e.getEntity();
         player.getInventory().clear();
         Commands.tpr(player);

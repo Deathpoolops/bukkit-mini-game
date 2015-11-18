@@ -68,7 +68,7 @@ public class Team implements Listener {
 
     }
 
-
+    //TODO Need to make one for Blue Team and make the color match
     @EventHandler
     public void joinRed(PlayerInteractEvent event) {
         Player player = event.getPlayer();
@@ -85,11 +85,6 @@ public class Team implements Listener {
                 player.sendMessage("You are on Team" + ChatColor.RED + "Red");
                 addToTeam(TeamType.RED, player);
 
-                /*player.sendMessage(player.getName());
-                player.getInventory().addItem(new ItemStack(Material.BOW, 1));
-                player.getInventory().addItem(new ItemStack(Material.ARROW, 64));
-                player.getInventory().addItem(new ItemStack(Material.TNT, 64));
-                player.getInventory().addItem(new ItemStack(Material.DRAGON_EGG, 64));*/
             }
         }
     }
