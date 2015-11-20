@@ -1,7 +1,7 @@
 package com.travis.test.core;
 
 import com.travis.test.Main;
-import com.travis.test.teamSetUP.teamManger.Team;
+import com.travis.test.teamSetUP.teamManger.TeamSetUp;
 import com.travis.test.utilities.Commands;
 import org.bukkit.Bukkit;
 import org.bukkit.event.player.PlayerEvent;
@@ -17,15 +17,14 @@ public class StartTime extends BukkitRunnable {
         plugin = pl;
     }
 
-    /*public StartTime() {
-        Main main = null;
-        plugin = main;
-    }*/
+    public StartTime() {
+
+    }
 
     @Override
     public void run() {
         if (startTime == 0) {
-            if (Team.getAllPlayersInTeams().size() <= 1) {
+            if (TeamSetUp.getAllPlayersInTeams().size() <= 1) {
                 Commands.assign();
                 plugin.restartCountdown();
                 return;

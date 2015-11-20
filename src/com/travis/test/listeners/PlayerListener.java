@@ -1,6 +1,6 @@
 package com.travis.test.listeners;
 
-import com.travis.test.teamSetUP.teamManger.Team;
+import com.travis.test.teamSetUP.teamManger.TeamSetUp;
 import com.travis.test.utilities.Commands;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -26,8 +26,8 @@ public class PlayerListener implements Listener {
     @EventHandler
     public static void onPlayerQuit(PlayerQuitEvent e) {
         Player player = e.getPlayer();
-        Team.blueTeam.remove(player.getName());
-        Team.redTeam.remove(player.getName());
+        TeamSetUp.blueTeam.remove(player.getName());
+        TeamSetUp.redTeam.remove(player.getName());
         player.sendMessage("You have be removed");
         //player.sendMessage("You have be removed form " + teamType.name());
     }

@@ -17,5 +17,3 @@ commands:
      description: Start Time
   stopTime:
      description: Stop Time
-  Name:
-       description: Stop Time

@@ -6,8 +6,10 @@ import com.travis.test.core.StartTime;
 import com.travis.test.listeners.ItemListener;
 import com.travis.test.listeners.PlayerListener;
 import com.travis.test.teamSetUP.Kits;
-import com.travis.test.teamSetUP.teamManger.Team;
+import com.travis.test.teamSetUP.TeamScoreboard;
+import com.travis.test.teamSetUP.teamManger.TeamSetUp;
 import com.travis.test.utilities.Commands;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -16,6 +18,13 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Deathpoolops on 11/6/15.
@@ -23,9 +32,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class Main extends JavaPlugin {
 
     public static int startTimeID;
+    public static int travis;
 
     public void onEnable() {
-        Team.clearTeams();
+        TeamSetUp.clearTeams();
         registerListeners();
         this.getLogger().info("Main is started");
         //startCountdown();
@@ -36,7 +46,7 @@ public class Main extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new EntityExplode(), this);
         pm.registerEvents(new PlayerListener(), this);
-        pm.registerEvents(new Team(), this);
+        pm.registerEvents(new TeamSetUp(), this);
         pm.registerEvents(new ItemListener(), this);
 
     }
@@ -51,6 +61,7 @@ public class Main extends JavaPlugin {
 
     public void stopCountdown() {
         getServer().getScheduler().cancelTask(startTimeID);
+        getServer().getScheduler().cancelTask(travis);
     }
 
     public void restartCountdown() {
@@ -59,15 +70,17 @@ public class Main extends JavaPlugin {
     }
 
     public void onDisable() {
-        Team.clearTeams();
+        TeamSetUp.clearTeams();
         this.getLogger().info("Main is disable");
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         //TODO Need to remove 95%  of all the command on this method
         if (label.equalsIgnoreCase("assign")) {
+            TeamScoreboard teamScoreboard = new TeamScoreboard();
             Player player = (Player) sender;
             Commands.assign();
+            teamScoreboard.scoreboard(player);
             //startCountdown();
         }
 
@@ -88,11 +101,8 @@ public class Main extends JavaPlugin {
         if (command.getName().equalsIgnoreCase("tpr")) {
             Player player = (Player) sender;
             Commands.tpr(player);
-        }
 
-        if (command.getName().equalsIgnoreCase("Name")) {
         }
-
 
         if (command.getName().equalsIgnoreCase("startTime")) {
             startCountdown();
@@ -127,5 +137,9 @@ public class Main extends JavaPlugin {
 
         return false;
     }
+
+   /* ExecutorService executorService = Executors.newSingleThreadExecutor();
+    ExecutorService executorService2 = Executors.newFixedThreadPool(5);
+    ExecutorService executorService3= Executors.newScheduledThreadPool(5);*/
 
 }
