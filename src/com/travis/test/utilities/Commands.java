@@ -32,9 +32,9 @@ public class Commands {
         int x = 0, z = 0, y = 0;
         Location location = new Location(player.getWorld(), x, y, z);
 
-        location.setX(67);
-        location.setY(122);
-        location.setZ(340);
+        location.setX(146.5);
+        location.setY(75.5);
+        location.setZ(530.5);
         player.teleport(location);
     }
 

@@ -1,5 +1,6 @@
 package com.travis.test;
 
+import com.mojang.authlib.GameProfile;
 import com.travis.test.blocks.EntityExplode;
 import com.travis.test.core.GameState;
 import com.travis.test.core.StartTime;
@@ -9,22 +10,23 @@ import com.travis.test.teamSetUP.Kits;
 import com.travis.test.teamSetUP.TeamScoreboard;
 import com.travis.test.teamSetUP.teamManger.TeamSetUp;
 import com.travis.test.utilities.Commands;
+import net.minecraft.server.v1_8_R3.EntityPlayer;
+import net.minecraft.server.v1_8_R3.MinecraftServer;
+import net.minecraft.server.v1_8_R3.PlayerInteractManager;
+import net.minecraft.server.v1_8_R3.WorldServer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.Team;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.UUID;
 
 /**
  * Created by Deathpoolops on 11/6/15.
@@ -32,13 +34,16 @@ import java.util.concurrent.Executors;
 public class Main extends JavaPlugin {
 
     public static int startTimeID;
-    public static int travis;
+    public static int startScoreboard;
+    public static EntityPlayer npc;
 
     public void onEnable() {
         TeamSetUp.clearTeams();
         registerListeners();
         this.getLogger().info("Main is started");
         //startCountdown();
+
+
 
     }
 
@@ -61,7 +66,7 @@ public class Main extends JavaPlugin {
 
     public void stopCountdown() {
         getServer().getScheduler().cancelTask(startTimeID);
-        getServer().getScheduler().cancelTask(travis);
+        getServer().getScheduler().cancelTask(startScoreboard);
     }
 
     public void restartCountdown() {
@@ -79,9 +84,10 @@ public class Main extends JavaPlugin {
         if (label.equalsIgnoreCase("assign")) {
             TeamScoreboard teamScoreboard = new TeamScoreboard();
             Player player = (Player) sender;
+
             Commands.assign();
             teamScoreboard.scoreboard(player);
-            //startCountdown();
+            // startCountdown();
         }
 
         if (command.getName().equalsIgnoreCase("startGame")) {
@@ -138,8 +144,14 @@ public class Main extends JavaPlugin {
         return false;
     }
 
-   /* ExecutorService executorService = Executors.newSingleThreadExecutor();
-    ExecutorService executorService2 = Executors.newFixedThreadPool(5);
-    ExecutorService executorService3= Executors.newScheduledThreadPool(5);*/
+   /* public void NPC(PlayerJoinEvent e) {
+
+        npc.teleportTo(e.getPlayer().getLocation(), false);
+
+        PlayerConnection connection = ((CraftPlayer) e.getPlayer()).getHandle().playerConnection;
+        connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, npc));
+        connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
+    }*/
+
 
 }
