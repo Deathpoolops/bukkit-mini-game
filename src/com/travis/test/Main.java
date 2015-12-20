@@ -1,6 +1,5 @@
 package com.travis.test;
 
-import com.mojang.authlib.GameProfile;
 import com.travis.test.blocks.EntityExplode;
 import com.travis.test.core.GameState;
 import com.travis.test.core.StartTime;
@@ -11,22 +10,14 @@ import com.travis.test.teamSetUP.TeamScoreboard;
 import com.travis.test.teamSetUP.teamManger.TeamSetUp;
 import com.travis.test.utilities.Commands;
 import net.minecraft.server.v1_8_R3.EntityPlayer;
-import net.minecraft.server.v1_8_R3.MinecraftServer;
-import net.minecraft.server.v1_8_R3.PlayerInteractManager;
-import net.minecraft.server.v1_8_R3.WorldServer;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.UUID;
 
 /**
  * Created by Deathpoolops on 11/6/15.
@@ -42,7 +33,6 @@ public class Main extends JavaPlugin {
         registerListeners();
         this.getLogger().info("Main is started");
         //startCountdown();
-
 
 
     }
@@ -101,7 +91,7 @@ public class Main extends JavaPlugin {
             Player player = (Player) sender;
             String test = player.getName();
             PlayerQuitEvent playerQuitEvent = new PlayerQuitEvent(player, test);
-            PlayerListener.onPlayerQuit(playerQuitEvent);
+            //TODO  PlayerListener.onPlayerQuit(playerQuitEvent);
         }
 
         if (command.getName().equalsIgnoreCase("tpr")) {
@@ -143,15 +133,5 @@ public class Main extends JavaPlugin {
 
         return false;
     }
-
-   /* public void NPC(PlayerJoinEvent e) {
-
-        npc.teleportTo(e.getPlayer().getLocation(), false);
-
-        PlayerConnection connection = ((CraftPlayer) e.getPlayer()).getHandle().playerConnection;
-        connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, npc));
-        connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
-    }*/
-
 
 }

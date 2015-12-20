@@ -26,7 +26,9 @@ public class EntityExplode implements Listener {
 
     }*/
 
-    @SuppressWarnings("deprecation")
+    //// TODO: 12/20/15 uncommit
+
+  /*  @SuppressWarnings("deprecation")
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         if (event.getBlock().getLocation().subtract(0, 1, 0).getBlock().getType() != Material.AIR) {
@@ -35,6 +37,6 @@ public class EntityExplode implements Listener {
 
         event.getBlock().getWorld().spawnFallingBlock(event.getBlock().getLocation(), event.getBlock().getType(), event.getBlock().getData());
         event.getBlock().setType(Material.AIR);
-    }
+    }*/
 
 }

@@ -1,9 +1,6 @@
 package com.travis.test.listeners;
 
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -33,6 +30,7 @@ public class ItemListener implements Listener {
                 transparent.add(Material.AIR);
                 Block block = player.getTargetBlock(transparent, 300);
                 player.getWorld().strikeLightning(block.getLocation());
+
             }
         }
     }
@@ -71,19 +69,15 @@ public class ItemListener implements Listener {
         LivingEntity shooter = event.getEntity();
         Player player = (Player) shooter;
         Inventory inv = player.getInventory();
-
         if (!(shooter instanceof Player)) {
             return;
         }
-
         if (!(player.isSneaking())) {
             return;
         }
-
-       if (!inv.contains(Material.TNT, 1)) {
+        if (!inv.contains(Material.TNT, 1)) {
             return;
         }
-
         ItemStack tnt = new ItemStack(Material.TNT, 1);
         inv.removeItem(tnt);
 
@@ -141,6 +135,60 @@ public class ItemListener implements Listener {
                     s.getWorld().playSound(s.getLocation(), Sound.ARROW_HIT, 10.0F, 5.0F);
                 }
             }
+        }
+
+    }
+
+    @SuppressWarnings("deprecation")
+    public void spawn(PlayerInteractEvent event, Block block) {
+        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            Player player = event.getPlayer();
+            Bukkit.getLogger().info("Working");
+
+            Location loc1 = player.getLocation();
+
+            block.getWorld().spawnFallingBlock(loc1, Material.GLASS, (byte) 1);
+
+
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    @EventHandler
+    public void titanShield(PlayerInteractEvent event) {
+        int i = 0;
+        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            Player player = event.getPlayer();
+            if (player.getItemInHand().getType() == Material.REDSTONE_BLOCK) {
+                while (i <= 2) {
+                    Location loc = player.getLocation();
+                    //x, y, z
+                    loc.add(2, 0, 1 - i);
+                    Block block = loc.getBlock();
+                    block.setType(Material.BEDROCK);
+
+                    loc.add(-4, 0, 0);
+                    Block block2 = loc.getBlock();
+                    block2.setType(Material.BEDROCK);
+
+                    Location loc2 = player.getLocation();
+
+                    loc2.add(1 - i, 0, 2);
+                    Block block3 = loc2.getBlock();
+                    block3.setType(Material.BEDROCK);
+
+
+                    loc2.add(0, 0, -4);
+                    Block block4 = loc2.getBlock();
+                    block4.setType(Material.BEDROCK);
+
+                    titanShieldHelper titanShieldHelper = new titanShieldHelper();
+                    titanShieldHelper.shield(event);
+
+                    i++;
+                }
+            }
+
         }
 
     }
